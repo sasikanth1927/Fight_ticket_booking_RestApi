@@ -1,0 +1,381 @@
+[
+    {
+    "flightId":2,
+    "flightName":"Indigo",
+    "fromCity":"Madurai",
+    "toCity":"Chennai",
+    "departureTime":"11.55",
+    "arrivalTime":"13.05",
+    "travelDuration":"1h 10m",
+    "economyFare":"3868",
+    "businessFare":"5000"
+},
+{
+    "flightId":3,
+    "flightName":"Indigo",
+    "fromCity":"Madurai",
+    "toCity":"Chennai",
+    "departureTime":"11.55",
+    "arrivalTime":"13.05",
+    "travelDuration":"1h 10m",
+    "economyFare":"3868",
+    "businessFare":"5000"
+},
+{
+    "flightId":4,
+    "flightName":"Indigo",
+    "fromCity":"Madurai",
+    "toCity":"Chennai",
+    "departureTime":"11.55",
+    "arrivalTime":"13.05",
+    "travelDuration":"1h 10m",
+    "economyFare":"3868",
+    "businessFare":"5000"
+},
+{
+    "flightId":5,
+    "flightName":"Indigo",
+    "fromCity":"Madurai",
+    "toCity":"Chennai",
+    "departureTime":"11.55",
+    "arrivalTime":"13.05",
+    "travelDuration":"1h 10m",
+    "economyFare":"3868",
+    "businessFare":"5000"
+}
+]
+
+
+                Flight Model
+
+
+
+package com.example.demo.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="FlightDetails")
+public class FlightModel {
+
+	@Id
+	private int flightId;
+	private String flightName;
+	private String fromCity;
+	private String toCity;
+	private String departureTime;
+	private String arrivalTime;
+	private String travelDuration;
+	private int economyFare;
+	private int businessFare;
+	public FlightModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public FlightModel(int flightId, String flightName, String fromCity, String toCity, String departureTime,
+			String arrivalTime, String travelDuration, int economyFare, int businessFare) {
+		super();
+		this.flightId = flightId;
+		this.flightName = flightName;
+		this.fromCity = fromCity;
+		this.toCity = toCity;
+		this.departureTime = departureTime;
+		this.arrivalTime = arrivalTime;
+		this.travelDuration = travelDuration;
+		this.economyFare = economyFare;
+		this.businessFare = businessFare;
+	}
+	public int getFlightId() {
+		return flightId;
+	}
+	public void setFlightId(int flightId) {
+		this.flightId = flightId;
+	}
+	public String getFlightName() {
+		return flightName;
+	}
+	public void setFlightName(String flightName) {
+		this.flightName = flightName;
+	}
+	public String getFromCity() {
+		return fromCity;
+	}
+	public void setFromCity(String fromCity) {
+		this.fromCity = fromCity;
+	}
+	public String getToCity() {
+		return toCity;
+	}
+	public void setToCity(String toCity) {
+		this.toCity = toCity;
+	}
+	public String getDepartureTime() {
+		return departureTime;
+	}
+	public void setDepartureTime(String departureTime) {
+		this.departureTime = departureTime;
+	}
+	public String getArrivalTime() {
+		return arrivalTime;
+	}
+	public void setArrivalTime(String arrivalTime) {
+		this.arrivalTime = arrivalTime;
+	}
+	public String getTravelDuration() {
+		return travelDuration;
+	}
+	public void setTravelDuration(String travelDuration) {
+		this.travelDuration = travelDuration;
+	}
+	public int getEconomyFare() {
+		return economyFare;
+	}
+	public void setEconomyFare(int economyFare) {
+		this.economyFare = economyFare;
+	}
+	public int getBusinessFare() {
+		return businessFare;
+	}
+	public void setBusinessFare(int businessFare) {
+		this.businessFare = businessFare;
+	}
+	
+	
+	
+}
+
+
+
+
+    Flight Repo
+
+package com.example.demo.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo.model.FlightModel;
+
+public interface FlightRepo extends JpaRepository<FlightModel, Integer> {
+
+}
+
+
+ 
+         Flight Service 
+
+package com.example.demo.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.model.FlightModel;
+import com.example.demo.repository.FlightRepo;
+
+@Service
+public class FlightService {
+
+	@Autowired
+	FlightRepo fr;
+	
+	// AddoneFlight
+	public FlightModel addinfo(FlightModel fm)
+	{
+		return fr.save(fm);
+	}
+	
+	//DisplayAllFlight
+	public List<FlightModel> showinfo()
+	{
+		return fr.findAll();	
+	}
+	
+	//DeleteAllFLight
+	public void deleteinfo()
+	{
+		 fr.deleteAll();
+	}
+
+	
+}
+
+
+
+   FlightControl
+
+package com.example.demo.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.model.FlightModel;
+import com.example.demo.repository.FlightRepo;
+
+@Service
+public class FlightService {
+
+	@Autowired
+	FlightRepo fr;
+	
+	// AddoneFlight
+	public FlightModel addinfo(FlightModel fm)
+	{
+		return fr.save(fm);
+	}
+	
+	//DisplayAllFlight
+	public List<FlightModel> showinfo()
+	{
+		return fr.findAll();	
+	}
+	
+	//DeleteAllFLight
+	public void deleteinfo()
+	{
+		 fr.deleteAll();
+	}
+
+	
+}
+
+Application properties
+
+
+spring.datasource.url=jdbc:mysql://localhost:3306/FlightTicketBooking
+spring.datasource.username=root
+spring.datasource.password=Llionell7339@
+
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+spring.jpa.hibernate.ddl-auto=update
+
+
+@DeleteMapping("deleteall")
+	public String removeFlights()
+	{
+		fs.deleteallinfo();;
+		return "ALl Flights are Successfully Deleted";
+	}
+
+
+
+
+
+
+
+
+[
+    {
+        "bookingId": 1,
+        "customerName": "Hariharan",
+        "paymentStatus": "Success",
+        "bookingDate": "2023-03-08",
+        "travelDate": "2023-05-08",
+        "contactNumber": 7339085005,
+        "bookingType": "Business",
+        "totalAmount": 35000,
+        "totalPassengers": 3,
+        "pmodel": [
+            {
+                "passengerId": 4026,
+                "passengerName": "Hari",
+                "age": 19,
+                "gender": "Male"
+            },
+            {
+                "passengerId": 4076,
+                "passengerName": "Pooja",
+                "age": 35,
+                "gender": "Female"
+            },
+            {
+                "passengerId": 6373,
+                "passengerName": "Dharshini",
+                "age": 19,
+                "gender": "Female"
+            }
+        ]
+    },
+    {
+        "bookingId": 2,
+        "customerName": "Haricharan",
+        "paymentStatus": "Success",
+        "bookingDate": "2023-03-08",
+        "travelDate": "2023-05-08",
+        "contactNumber": 6383402676,
+        "bookingType": "Economy",
+        "totalAmount": 5000,
+        "totalPassengers": 1,
+        "pmodel": [
+            {
+                "passengerId": 9873,
+                "passengerName": "Ravi",
+                "age": 29,
+                "gender": "Male"
+            }
+        ]
+    },
+    {
+        "bookingId": 3,
+        "customerName": "RamKumar",
+        "paymentStatus": "Failure",
+        "bookingDate": "2023-03-08",
+        "travelDate": "2023-05-08",
+        "contactNumber": 9488745289,
+        "bookingType": "Business",
+        "totalAmount": 30000,
+        "totalPassengers": 3,
+        "pmodel": [
+            {
+                "passengerId": 6843,
+                "passengerName": "Dharshini",
+                "age": 19,
+                "gender": "Female"
+            },
+            {
+                "passengerId": 7657,
+                "passengerName": "Harish",
+                "age": 54,
+                "gender": "Male"
+            },
+            {
+                "passengerId": 8979,
+                "passengerName": "Churchill",
+                "age": 24,
+                "gender": "Male"
+            }
+        ]
+    },
+    {
+        "bookingId": 4,
+        "customerName": "Siva",
+        "paymentStatus": "Pending",
+        "bookingDate": "2023-03-08",
+        "travelDate": "2023-05-08",
+        "contactNumber": 7277210066,
+        "bookingType": "Economy",
+        "totalAmount": 5000,
+        "totalPassengers": 2,
+        "pmodel": [
+            {
+                "passengerId": 1212,
+                "passengerName": "Ana de Armas",
+                "age": 29,
+                "gender": "Female"
+            },
+            {
+                "passengerId": 3289,
+                "passengerName": "Gosling",
+                "age": 20,
+                "gender": "Male"
+            }
+        ]
+    }
+]
